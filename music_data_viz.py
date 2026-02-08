@@ -21,11 +21,24 @@ def line_plot(df):
     )
     plt.title("Loudness (dB) of music by Decade")
     plt.show()
+def heatmap(df):
+    corr = df[
+        ["bpm", "dB", "nrgy", "live", "spch", "pop", "dnce", "val", "acous"]
+    ].corr()
+    sns.heatmap(corr, annot=True, cmap="coolwarm")
+    plt.title("Correlation Heatmap of Music Features")
+    plt.show()
+
 def main():
     music = load_data()
     music_clean = clean_data(music)
     line_plot(music_clean)
-
+    heatmap(music_clean)
 if __name__ == "__main__":
+    sns.set_theme(
+    style="whitegrid",
+    palette="muted",
+    font_scale=1.1
+)
     main()
     
