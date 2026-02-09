@@ -28,12 +28,21 @@ def heatmap(df):
     sns.heatmap(corr, annot=True, cmap="coolwarm")
     plt.title("Correlation Heatmap of Music Features")
     plt.show()
-
+def scatter_plot(df):
+    sns.scatterplot(
+        data=df,
+        x="nrgy",
+        y="dB",
+        hue="Decade"
+    )
+    plt.title("Scatter Plot of Energy vs Loudness (dB) by Decade")
+    plt.show()
 def main():
     music = load_data()
     music_clean = clean_data(music)
     line_plot(music_clean)
     heatmap(music_clean)
+    scatter_plot(music_clean)
 if __name__ == "__main__":
     sns.set_theme(
     style="whitegrid",
